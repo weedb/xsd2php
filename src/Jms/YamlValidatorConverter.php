@@ -7,7 +7,7 @@ use GoetasWebservices\XML\XSDReader\Schema\Attribute\AttributeItem;
 use GoetasWebservices\XML\XSDReader\Schema\Element\Element;
 use GoetasWebservices\XML\XSDReader\Schema\Element\ElementItem;
 use GoetasWebservices\XML\XSDReader\Schema\Schema;
-use GoetasWebservices\XML\XSDReader\Schema\Type\ComplexType;
+use GoetasWebservices\XML\XSDReader\Schema\Type\BaseComplexType;
 use GoetasWebservices\XML\XSDReader\Schema\Type\SimpleType;
 use GoetasWebservices\XML\XSDReader\Schema\Type\Type;
 use GoetasWebservices\Xsd\XsdToPhp\Php\Structure\PHPClass;
@@ -90,22 +90,25 @@ class YamlValidatorConverter extends YamlConverter
                         break;
 //                    fractionDigits totalDigits validation makes no sense in object validation
 //                    mainly because they are represented as floats
-//                    case 'fractionDigits':
-//                        foreach ($check as $item) {
-//                            if ($item['value']>0) {
-//                                $rules[] = [
-//                                    'Regex' => "/^\-?(\\d+\\.\\d{{$item['value']}})|\\d*$/"
-//                                ];
-//                            }
-//                        }
-//                        break;
-//                    case 'totalDigits':
-//                        foreach ($check as $item) {
-//                            $rules[] = [
-//                                'Regex' => "/^([^\d]*\d){{$item['value']}}[^\d]*$/"
-//                            ];
-//                        }
-//                        break;
+                    case 'fractionDigits':
+                        foreach ($check as $item) {
+                            if ($item['value'] > 0) {
+                                //https://regex101.com/r/BqewCi/1
+                                $rules[] = [
+                                    'Regex' => ['pattern' => "/^[+-]?(?:(?:\d+\.\d{1,{$item['value']}}$)|\d$)/"]
+                                ];
+                            }
+                        }
+                        break;
+                    case 'totalDigits':
+                        foreach ($check as $item) {
+                            //I assume that totalDigits is not exact, but the maximum digits
+                            //https://regex101.com/r/7M9NIX/1
+                            $rules[] = [
+                                'Regex' => ['pattern' => "/^[+-]?(?:\d{1,{$item['value']}}|(?=\d*\.\d+$)(?=[^.].{2,{$item['value']}}$)[\d.]*)$/"]
+                            ];
+                        }
+                        break;
                     case 'length':
                         foreach ($check as $item) {
                             $rules[] = [
@@ -238,7 +241,7 @@ class YamlValidatorConverter extends YamlConverter
             $property['validation'][] = [
                 'All' => ['constraints' => $rules],
             ];
-        } elseif ($type instanceof ComplexType) {
+        } elseif ($type instanceof BaseComplexType) {
             $property['validation'][] = [
                 'Valid' => null,
             ];
