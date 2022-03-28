@@ -93,9 +93,9 @@ class YamlValidatorConverter extends YamlConverter
                     case 'fractionDigits':
                         foreach ($check as $item) {
                             if ($item['value'] > 0) {
-                                //https://regex101.com/r/BqewCi/1
+                                //https://regex101.com/r/I1ghQB/1
                                 $rules[] = [
-                                    'Regex' => ['pattern' => "/^[+-]?(?:(?:\d+\.\d{1,{$item['value']}}$)|\d$)/"]
+                                    'Regex' => ['pattern' => "/^(?:[+-]?\d+\.\d{1,{$item['value']}}$)|^[+-]?\d+$/"]
                                 ];
                             }
                         }
