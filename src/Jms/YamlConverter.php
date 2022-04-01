@@ -184,8 +184,8 @@ class YamlConverter extends AbstractConverter
                 || $this->getTypeAlias($type, $type->getSchema())
             ;
 
-            if (!$this->classes[spl_object_hash($element)]['skip'] && ($p = $this->getPropertyInHierarchy($visitedTypeClass, '__value'))) {
-                $data['properties']['__value'] = $p;
+            if (!$this->classes[spl_object_hash($element)]['skip'] && ($p = $this->getPropertyInHierarchy($visitedTypeClass, '_'))) {
+                $data['properties']['_'] = $p;
             }
         }
 
@@ -350,7 +350,7 @@ class YamlConverter extends AbstractConverter
                 $property['xml_element']['cdata'] = $this->useCdata;
             }
 
-            $data['properties']['__value'] = $property;
+            $data['properties']['_'] = $property;
 
             return $property;
         } else {
@@ -360,8 +360,8 @@ class YamlConverter extends AbstractConverter
                 $extension = $this->visitType($type, true);
             }
 
-            if ($prop = $this->getPropertyInHierarchy($extension, '__value')) {
-                $data['properties']['__value'] = $prop;
+            if ($prop = $this->getPropertyInHierarchy($extension, '_')) {
+                $data['properties']['_'] = $prop;
 
                 return $property;
             } else {
@@ -426,7 +426,7 @@ class YamlConverter extends AbstractConverter
                 $parentClass = $this->visitTypeAnonymous($type, $name, key($parentClass));
             }
 
-            if ($prop = $this->getPropertyInHierarchy($parentClass, '__value')) {
+            if ($prop = $this->getPropertyInHierarchy($parentClass, '_')) {
                 return $prop['type'];
             }
         } while (

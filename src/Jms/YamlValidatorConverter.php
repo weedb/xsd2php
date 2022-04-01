@@ -286,10 +286,10 @@ class YamlValidatorConverter extends YamlConverter
         if ($restriction = $type->getRestriction()) {
             $parent = $restriction->getBase();
             if ($parent instanceof Type) {
-                if (!isset($data['properties']['__value'])) {
-                    $data['properties']['__value'] = [];
+                if (!isset($data['properties']['_'])) {
+                    $data['properties']['_'] = [];
                 }
-                $this->loadValidatorType($data['properties']['__value'], $type);
+                $this->loadValidatorType($data['properties']['_'], $type);
             }
         }
     }

@@ -20,17 +20,17 @@ class ClassGenerator
     private function handleBody(Generator\ClassGenerator $class, PHPClass $type)
     {
         foreach ($type->getProperties() as $prop) {
-            if ($prop->getName() !== '__value') {
+            if ($prop->getName() !== '_') {
                 $this->handleProperty($class, $prop);
             }
         }
         foreach ($type->getProperties() as $prop) {
-            if ($prop->getName() !== '__value') {
+            if ($prop->getName() !== '_') {
                 $this->handleMethod($class, $prop, $type);
             }
         }
 
-        if (count($type->getProperties()) === 1 && $type->hasProperty('__value')) {
+        if (count($type->getProperties()) === 1 && $type->hasProperty('_')) {
             return false;
         }
 

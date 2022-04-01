@@ -39,13 +39,13 @@ class PHPClass
         if ($onlyParent) {
             $e = $this->getExtends();
             if ($e) {
-                if ($e->hasProperty('__value')) {
-                    return $e->getProperty('__value');
+                if ($e->hasProperty('_')) {
+                    return $e->getProperty('_');
                 }
             }
         } else {
-            if ($this->hasPropertyInHierarchy('__value') && count($this->getPropertiesInHierarchy()) === 1) {
-                return $this->getPropertyInHierarchy('__value');
+            if ($this->hasPropertyInHierarchy('_') && count($this->getPropertiesInHierarchy()) === 1) {
+                return $this->getPropertyInHierarchy('_');
             }
         }
     }

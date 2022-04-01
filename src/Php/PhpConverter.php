@@ -324,7 +324,7 @@ class PhpConverter extends AbstractConverter
 
             foreach ($restriction->getChecks() as $typeCheck => $checks) {
                 foreach ($checks as $check) {
-                    $class->addCheck('__value', $typeCheck, $check);
+                    $class->addCheck('_', $typeCheck, $check);
                 }
             }
         } elseif ($unions = $type->getUnions()) {
@@ -347,7 +347,7 @@ class PhpConverter extends AbstractConverter
     {
         if ($alias = $this->getTypeAlias($type)) {
             $c = PHPClass::createFromFQCN($alias);
-            $val = new PHPProperty('__value');
+            $val = new PHPProperty('_');
             $val->setType($c);
             $c->addProperty($val);
             $class->setExtends($c);
@@ -511,7 +511,7 @@ class PhpConverter extends AbstractConverter
                 $parentClass = $this->visitTypeAnonymous($type, $name, $parentClass);
             }
 
-            if ($prop = $parentClass->getPropertyInHierarchy('__value')) {
+            if ($prop = $parentClass->getPropertyInHierarchy('_')) {
                 return $prop->getType();
             }
         } while (

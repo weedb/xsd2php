@@ -170,7 +170,7 @@ class I40Test extends TestCase
                     'Epa\Schema\AdditionalIdentifierRootEl' => [
                         'xml_root_name' => 'AdditionalIdentifierRootEl',
                         'properties' => [
-                            '__value' => [
+                            '_' => [
                                 'expose' => true,
                                 'xml_value' => true,
                                 'access_type' => 'public_method',
@@ -202,7 +202,7 @@ class I40Test extends TestCase
             'Epa\\Schema\\AdditionalIdentifierRootElType' => [
                 'Epa\\Schema\\AdditionalIdentifierRootElType' => [
                     'properties' => [
-                        '__value' => [
+                        '_' => [
                             'expose' => true,
                             'xml_value' => true,
                             'access_type' => 'public_method',
@@ -218,7 +218,7 @@ class I40Test extends TestCase
             'Epa\\Schema\\AdditionalIdentifierRootElParentType' => [
                 'Epa\\Schema\\AdditionalIdentifierRootElParentType' => [
                     'properties' => [
-                        '__value' => [
+                        '_' => [
                             'expose' => true,
                             'xml_value' => true,
                             'access_type' => 'public_method',
@@ -285,7 +285,7 @@ class I40Test extends TestCase
             'Epa\\Schema\\AdditionalIdentifierRootElParentType' => [
                 'Epa\\Schema\\AdditionalIdentifierRootElParentType' => [
                     'properties' => [
-                        '__value' => [
+                        '_' => [
                             'expose' => true,
                             'xml_value' => true,
                             'access_type' => 'public_method',
@@ -357,7 +357,7 @@ class I40Test extends TestCase
             'Epa\\Schema\\AdditionalIdentifierRootElType' => [
                 'Epa\\Schema\\AdditionalIdentifierRootElType' => [
                     'properties' => [
-                        '__value' => [
+                        '_' => [
                             'expose' => true,
                             'xml_value' => true,
                             'access_type' => 'public_method',
@@ -384,7 +384,7 @@ class I40Test extends TestCase
             'Epa\\Schema\\AdditionalIdentifierRootElParentType' => [
                 'Epa\\Schema\\AdditionalIdentifierRootElParentType' => [
                     'properties' => [
-                        '__value' => [
+                        '_' => [
                             'expose' => true,
                             'xml_value' => true,
                             'access_type' => 'public_method',
